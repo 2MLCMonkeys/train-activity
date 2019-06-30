@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: whitesmoke;
+    font-family: 'Oswald', sans-serif;
+
+}
+
+#main{
+    background-color: rgba(15, 15, 15, 0.87);
+    padding: 20px;
+}
+
+#jumbo{
+    background-image: url(../images/train-front.jpg);
+    background-size: 100%;
+    border-radius: 25px;
+}
+
+table{
+    width: 100%;
+}
