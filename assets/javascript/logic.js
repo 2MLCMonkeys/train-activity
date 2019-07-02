@@ -13,9 +13,8 @@
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
-//values from html
+//variables
 var submitB = $("#submitBtn");
-var submitC = $("#clearBtn");
 var addTrain = $("#trains");
 var name = "";
 var destination = "";
@@ -48,16 +47,6 @@ submitB.on("click", function(event){
   submitFrequencyt.val(" ");
 });
 
-//clearing form on click
-submitC.on("click", function(event){
-  event.preventDefault();
-  //clears values
-  submitTrain.val(" ");
-  submitDes.val(" ");
-  submitFirstTime.val(" ");
-  submitFrequencyt.val(" ");
-});
-
 // Create Firebase event for adding train to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
@@ -81,25 +70,25 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
    // Current Time
      var currentTime = moment();
-     console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
+     console.log(`Current time: ${moment(currentTime).format("HH:mm")}`);
 
    // Difference between the times
-   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-   console.log("DIFFERENCE IN TIME: " + diffTime);
+   var difference = moment().diff(moment(firstTimeConverted), "minutes");
+   console.log(`Difference:${difference}`);
 
-   // Time apart (remainder)
-     var tRemainder = diffTime % trainFreq;
-     console.log(tRemainder);
+   // Time remaining
+     var remaining = difference % trainFreq;
+     console.log(remaining);
 
-     // Minute Until Train
-     var tMinutesTillTrain = trainFreq - tRemainder;
-     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+     // Minutes Until Train
+     var minutesLeft = trainFreq - remaining;
+     console.log(`Left:${minutesLeft}`);
 
      // Next Train
-     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-     console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
+     var nextTrain = moment().add(minutesLeft, "minutes");
+     console.log(`Next Train: ${moment(nextTrain).format("HH:mm")}`);
 
 
-   // Add each train's data into the table
-   $("#trains").append(`<tr><td>${trainName}</td><td>${trainDes}</td><td>${trainFreq}</td><td>${moment(nextTrain).format("HH:mm")}</td><td>${tMinutesTillTrain}</td>`);
+   // Add trains to page from firebase
+    addTrain.append(`<tr><td>${trainName}</td><td>${trainDes}</td><td>${firstTrain}</td><td>${trainFreq}</td><td>${moment(nextTrain).format("HH:mm")}</td><td>${minutesLeft}</td>`);
  });

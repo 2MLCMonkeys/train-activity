@@ -17,6 +17,7 @@ body{
     border-style: outset;
     border-color: rgb(152, 154, 175);
     border-width: 8px;
+    margin-top: 25px;
 }
 
 #jumbo{
@@ -26,12 +27,50 @@ body{
     border-radius: 25px;
 }
 
+p{
+    width: 65%;
+    margin: auto;
+}
+
+img{
+    width: 150px;
+    position: relative;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 10s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+  }
+  
+  /* Safari 4.0 - 8.0 */
+  @-webkit-keyframes example {
+    0%   {transform: scaleX(-1); left:0px; top:0px;}
+    50%  {transform: scaleX(-1); left:86%; top:0px;}
+    51%  {transform: scaleX(1); left:86%; top:0px;}
+    100% {transform: scaleX(1); left:0px; top:0px;}
+  }
+  
+  /* Standard syntax */
+  @keyframes example {
+    0%   {transform: scaleX(-1); left:0px; top:0px;}
+    50%  {transform: scaleX(-1); left:86%; top:0px;}
+    51%  {transform: scaleX(1); left:86%; top:0px;}
+    100% {transform: scaleX(1); left:0px; top:0px;}
+  }
+
+.card{
+    border-radius: 25px;
+}
+
 #add-train{
     color: gainsboro;
     background-color: rgba(99, 140, 156, 0.623);
 }
 
 #add-train-header{
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
     background-color: rgba(169, 188, 195, 0.623);
 }
 
@@ -42,6 +81,8 @@ body{
 }
 
 #train-table-header{
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
     background-color: rgba(169, 188, 195, 0.623);
     margin-bottom: 10px;
 }
